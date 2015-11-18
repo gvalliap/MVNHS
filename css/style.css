@@ -2,6 +2,10 @@ html {
     font-family: 'Raleway', 'Roboto', sans-serif;
 }
 
-#navbar-home {
+#home-banner {
     font-weight: 600;
+}
+
+#login {
+    padding: 3em 4em 3em 4em;
 }
