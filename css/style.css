@@ -9,3 +9,10 @@ html {
 #login {
     padding: 3em 4em 3em 4em;
 }
+
+.col-content {
+    font-weight: 500;
+    font-style: italic;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
