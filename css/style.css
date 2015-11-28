@@ -2,17 +2,30 @@ html {
     font-family: 'Raleway', 'Roboto', sans-serif;
 }
 
-#home-banner {
-    font-weight: 600;
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-#login {
+main {
+    flex: 1 0 auto;
+}
+
+.section-header {
+    font-weight: 500;
+}
+
+#login, #register {
     padding: 3em 4em 3em 4em;
 }
 
 .col-content {
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 400;
     padding-top: 3px;
     padding-bottom: 5px;
+}
+
+br {
+    margin-bottom: 6px;
 }
