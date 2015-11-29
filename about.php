@@ -22,8 +22,8 @@
                 For any semester before the final semester, a member is active if they earn at least 5 community service hours during the semester (after accounting for deductions for missed meetings and activities).<br>
                 Members must have also paid membership dues in order to be counted as active for the semester. If you owe us membership fees for a prior semester, you must pay us before end of March to receive your NHS insignia.</p>
                 <div class="center">
-                    <a class="btn" onclick="Materialize.showStaggeredList('#staggered-test')"><i class="left material-icons">grade</i>Show me the rewards!</a>
-                    <ul id="staggered-test" class="staggered-list">
+                    <a class="btn waves-effect waves-light" onclick="Materialize.showStaggeredList('#staggered-rewards-list')"><i class="left material-icons">grade</i>Show me the rewards!</a>
+                    <ul id="staggered-rewards-list" class="staggered-list">
                         <li><b>Honorary Member: certificate (active 1-2 semesters)</b></li>
                         <li><b>Life Member: stole and certificate (active 5-6 semesters)</b></li>
                     </ul>
