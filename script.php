@@ -1,10 +1,12 @@
 <!-- JS -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/typed.min.js"></script>
+<script type="text/javascript" src="js/typed.js"></script>
 
 <script type="text/javascript">
-    var welcome = ["Hi Ganesh Valliappan!<br> ^2000Welcome to the NHS website"];
+    var welcome = ["<b>M</b>onta <b>V</b>ista <b>N</b>ational <b>H</b>onor <b>S</b>ociety", "<b>MVNHS:</b> Character", "<b>MVNHS:</b> Scholarship", "<b>MVNHS:</b> Service", "<b>MVNHS:</b> Leadership", "Join us and volunteer now!"];
+    var enter = ["<b>M</b>onta <b>V</b>ista <b>N</b>ational <b>H</b>onor <b>S</b>ociety", "Character^750, Scholarship^750, Service^750, Leadership", "Join us and volunteer now!"];
+    var min = ["Character.", "Scholarship.", "Service.", "Leadership.", "<b>M</b>onta <b>V</b>ista <b>N</b>ational <b>H</b>onor <b>S</b>ociety"];
     $(document).ready(function(){
         $('.parallax').parallax();
         $('.modal-trigger').leanModal({
@@ -14,8 +16,8 @@
             out_duration: 200, // Transition out duration
         });
         $(".button-collapse").sideNav();
-        $(".element").typed({
-            strings: welcome,
+        $(".animated-typing").typed({
+            strings: min,
             typeSpeed: 0
         });
     });

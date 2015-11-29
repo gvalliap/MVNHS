@@ -16,13 +16,17 @@
                             <li><a class="waves-effect waves-light modal-trigger" href="#login"><i class="material-icons left">send</i>Login</a></li>
                         </ul>
                         <ul class="left hide-on-med-and-down">
-                            <li><a class="waves-effect waves-light" href="contact.php"><i class="material-icons left">description</i>About Us</a></li>
+                            <li><a class="waves-effect waves-light" href="about.php"><i class="material-icons left">description</i>About Us</a></li>
                             <li><a class="waves-effect waves-light" href="officers.php"><i class="material-icons left">contacts</i>Officers</a></li>
                             <li><a class="waves-effect waves-light"><i class="material-icons left">perm_media</i>Photos</a></li>
                         </ul>
                         <ul id="mobile-nav" class="side-nav">
-                            <li><a href="modal-trigger" href="#register"><i class="material-icons left">group</i>Register</a></li>
                             <li><a class="modal-trigger" href="#login"><i class="material-icons left">send</i>Login</a></li>
+                            <li><a href="activites.php"><i class="material-icons left">location_on</i>Events</a></li>
+                            <li><a href="activites.php"><i class="material-icons left">description</i>About Us</a></li>
+                            <li><a href="activites.php"><i class="material-icons left">contacts</i>Officers</a></li>
+                            <li><a href="activites.php"><i class="material-icons left">perm_media</i>Photos</a></li>
+                            <li><a class="modal-trigger" href="#register"><i class="material-icons left">group</i>Register</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -30,39 +34,17 @@
         </header>
 
         <main>
-            <div class="slider">
-            	<ul class="slides">
-            		<li>
-            			<img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
-            			<div class="caption center-align">
-            				<h3>This is our big Tagline!</h3>
-            				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            			</div>
-            		</li>
-            		<li>
-            			<img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
-            			<div class="caption left-align">
-            				<h3>Left Aligned Caption</h3>
-            				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            			</div>
-            		</li>
-            		<li>
-            			<img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
-            			<div class="caption right-align">
-            				<h3>Right Aligned Caption</h3>
-            				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            			</div>
-            		</li>
-            		<li>
-            			<img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
-            			<div class="caption center-align">
-            				<h3>This is our big Tagline!</h3>
-            				<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            			</div>
-            		</li>
-            	</ul>
+            <div class="parallax-container">
+                <div class="parallax"><img src="http://devrieslegal.com/wp-content/uploads/2014/04/bigstock-volunteer-group-raising-hands-195439581.jpg" class="responsive-img"></div>
             </div>
-
+            <div class="light-blue darken-3 hide-on-large-only white-text center">
+                <h2 class="section-header">Monta Vista National Honor Society</h2>
+            </div>
+            <div class="light-blue darken-3 hide-on-med-and-down">
+                <div id="animation" class="white-text section-header center">
+                    <div class="animated-typing" style="display: inline; width: auto;"></div>
+                </div>
+            </div>
             <div class="container">
                 <div class="section">
                     <h3 class="center red-text section-header">News</h3>
@@ -106,7 +88,7 @@
             </div>
 
             <div class="parallax-container">
-                <div class="parallax"><img src="https://wallpaperscraft.com/image/crowd_people_dance_silhouette_57172_3840x2160.jpg"></div>
+                <div class="parallax"><img src="https://wallpaperscraft.com/image/crowd_people_dance_silhouette_57172_3840x2160.jpg" class="responsive-img"></div>
             </div>
 
             <div class="container">

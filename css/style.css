@@ -30,36 +30,38 @@ br {
     margin-bottom: 6px;
 }
 
+#viewport {
+    position:fixed !important;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+
 .typed-cursor{
-    color: #fff;
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
 }
 
-@-webkit-keyframes typing {
-    from { width: 0 }
-    to { width:16.3em }
+#animation {
+    font-size: 5em;
 }
 
-@-moz-keyframes typing {
-    from { width: 0 }
-    to { width:16.3em }
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }
-
-@-webkit-keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: black }
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }
-
-@-moz-keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: black }
-}
-
-#animated-typing {
-    white-space:nowrap;
-    overflow:hidden;
-
-    -webkit-animation: typing 17s steps(30, end), /* # of steps = # of characters */
-                        blink-caret 1s step-end infinite;
-    -moz-animation: typing 17s steps(30, end), /* # of steps = # of characters */
-                        blink-caret 1s step-end infinite;
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }

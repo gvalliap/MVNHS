@@ -9,7 +9,9 @@
         </header>
         <main>
             <div class="container">
-                <h1 id="animated-typing" class="red-text">Welcome Ganesh Valliappan!</h1>
+                <div id="animation" class="red-text z-depth2 section-header">
+                    <div class="animated-typing" style="display: inline; width: auto;"></div>
+                </div>
             </div>
         </main>
 
