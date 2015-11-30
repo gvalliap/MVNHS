@@ -1,3 +1,31 @@
+<?php include("initialize.php"); ?>
+<?php
+    if(isset($_POST['user'])) {
+        if($_SESSION['user']){
+            header("Location: home.php");
+            die;
+        }
+    }
+    if(isset($_POST['user']) && isset($_POST['pass'])) {
+        if($_POST['user'] && $_POST['pass']){
+        	$user = stripslashes($_POST['user']);
+        	$pass = stripslashes($_POST['pass']);
+        	$query = $connect->query("SELECT * FROM `users` WHERE `email`='$user' AND `pass` = '$pass' LIMIT 1");
+        	if($query->num_rows > 0){
+        		$row = mysqli_fetch_array($query, MYSQLI_BOTH);
+        		$_SESSION['user'] = $user;
+        		$_SESSION['id'] = $row['ID'];
+        		$_SESSION['name'] = $row['name'];
+        		$_SESSION['pass'] = $pass;
+        		$connect->query("UPDATE `users` SET `date`='$time' WHERE `email` = '$user' AND `pass` = '$pass'");
+        		header("Location: home.php");
+        		die;
+        	}
+        	else
+        		$fail = true;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,32 +33,7 @@
     </head>
     <body>
         <header>
-            <div id="home-navbar" class="navbar-fixed">
-                <nav>
-                    <div class="nav-wrapper light-blue darken-3">
-                        <a href="#" class="brand-logo center" style="font-weight: 600;">Monta Vista NHS</a>
-                        <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a class="waves-effect waves-light" href="activites.php"><i class="material-icons left">location_on</i>Events</a></li>
-                            <li><a class="waves-effect waves-light modal-trigger" href="#register"><i class="material-icons left">group</i>Register</a></li>
-                            <li><a class="waves-effect waves-light modal-trigger" href="#login"><i class="material-icons left">send</i>Login</a></li>
-                        </ul>
-                        <ul class="left hide-on-med-and-down">
-                            <li><a class="waves-effect waves-light" href="about.php"><i class="material-icons left">description</i>About Us</a></li>
-                            <li><a class="waves-effect waves-light" href="officers.php"><i class="material-icons left">contacts</i>Officers</a></li>
-                            <li><a class="waves-effect waves-light"><i class="material-icons left">perm_media</i>Photos</a></li>
-                        </ul>
-                        <ul id="mobile-nav" class="side-nav">
-                            <li><a class="modal-trigger" href="#login"><i class="material-icons left">send</i>Login</a></li>
-                            <li><a href="activites.php"><i class="material-icons left">location_on</i>Events</a></li>
-                            <li><a href="activites.php"><i class="material-icons left">description</i>About Us</a></li>
-                            <li><a href="activites.php"><i class="material-icons left">contacts</i>Officers</a></li>
-                            <li><a href="activites.php"><i class="material-icons left">perm_media</i>Photos</a></li>
-                            <li><a class="modal-trigger" href="#register"><i class="material-icons left">group</i>Register</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+            <?php include("navbar.php"); ?>
         </header>
 
         <main>
@@ -138,29 +141,7 @@
 
         <?php include("footer.php"); ?>
 
-        <div id="login" class="modal">
-            <form class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <input id="email" type="text" class="validate">
-                    <label for="email">Email</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">label</i>
-                    <input id="pass" type="password" class="validate">
-                    <label for="pass">Password</label>
-                </div>
-                <div style="text-align: center;">
-                    <button class="btn-large waves-effect waves-light center-align" type="submit" name="action" style="margin: auto;">Login
-                        <i class="material-icons left">send</i>
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div id="register" class="modal">
-            <h5 class="center">Come to the next NHS meeting and talk to one of the officers to sign up!</h5>
-        </div>
+        <?php include("modal.php"); ?>
 
         <?php include("script.php"); ?>
     </body>
