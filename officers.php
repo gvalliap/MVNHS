@@ -1,3 +1,8 @@
+<?php
+    include("initialize.php");
+    include("variables.php");
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,9 +77,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="center">
-                    <a class="waves-effect waves-light btn-large center" href="index.php"><i class="material-icons left">fast_rewind</i>Back to Home</a>
                 </div>
             </div>
         </main>

@@ -1,9 +1,10 @@
-<?php include("initialize.php"); ?>
+<?php include("initialize.php");?>
 <?php
     if(!$_SESSION['user']){
         header("Location: index.php");
         die;
     }
+    include("variables.php");
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
     </head>
     <body>
         <header>
-            <?php include("login-navbar.php"); ?>
+            <?php include("navbar.php"); ?>
         </header>
         <main>
             <div class="parallax-container">
@@ -31,6 +32,10 @@
 
             </div>
         </main>
+
+        <div id="typed-strings" class="hide">
+            <p>Welcome <?=$fname ?> <?=$lname ?>!</p>
+        </div>
 
         <?php include("footer.php"); ?>
 
@@ -51,11 +56,10 @@
                 });
                 $(".button-collapse").sideNav();
                 $(".animated-typing").typed({
-                    strings: min,
+                    stringsElement: $('#typed-strings'),
                     typeSpeed: 0
                 });
             });
-
             $('.slider').slider({full_width: true});
         </script>
     </body>

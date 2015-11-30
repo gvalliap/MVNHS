@@ -1,3 +1,5 @@
+<?php include("initialize.php"); ?>
+
 <!DOCTYPE html>
 <html>
     <head>

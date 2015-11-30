@@ -1,28 +1,9 @@
 <?php include("initialize.php"); ?>
 <?php
-    if(isset($_POST['user'])) {
+    if(isset($_SESSION['user'])) {
         if($_SESSION['user']){
             header("Location: home.php");
             die;
-        }
-    }
-    if(isset($_POST['user']) && isset($_POST['pass'])) {
-        if($_POST['user'] && $_POST['pass']){
-        	$user = stripslashes($_POST['user']);
-        	$pass = stripslashes($_POST['pass']);
-        	$query = $connect->query("SELECT * FROM `users` WHERE `email`='$user' AND `pass` = '$pass' LIMIT 1");
-        	if($query->num_rows > 0){
-        		$row = mysqli_fetch_array($query, MYSQLI_BOTH);
-        		$_SESSION['user'] = $user;
-        		$_SESSION['id'] = $row['ID'];
-        		$_SESSION['name'] = $row['name'];
-        		$_SESSION['pass'] = $pass;
-        		$connect->query("UPDATE `users` SET `date`='$time' WHERE `email` = '$user' AND `pass` = '$pass'");
-        		header("Location: home.php");
-        		die;
-        	}
-        	else
-        		$fail = true;
         }
     }
 ?>
