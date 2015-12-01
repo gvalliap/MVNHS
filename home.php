@@ -34,7 +34,7 @@
         </main>
 
         <div id="typed-strings" class="hide">
-            <p>Welcome <?=$fname ?> <?=$lname ?>!</p>
+            <p>^750Welcome <?=$fname ?> <?=$lname ?>!</p>
         </div>
 
         <?php include("footer.php"); ?>

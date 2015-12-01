@@ -1,6 +1,10 @@
 <?php
     if(isset($_SESSION['user'])) {
-        include("login-navbar.php");
+        if($_SESSION['admin']) {
+            include("admin-navbar.php");
+        } else {
+            include("login-navbar.php");
+        }
     } else {
         include("normal-navbar.php");
     }
