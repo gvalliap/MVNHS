@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">email</i>
-                            <input id="user" name="user" type="text" class="validate" value="<?=$user; ?>">
+                            <input disabled id="user" name="user" type="text" class="validate" value="<?=$user; ?>">
                             <label for="user">Email</label>
                         </div>
                         <div class="input-field col s12 m6">

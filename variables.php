@@ -6,6 +6,7 @@
             $row = mysqli_fetch_array($query, MYSQLI_BOTH);
             $fname = $row['fname'];
             $lname = $row['lname'];
+            $name = $fname . $lname;
             $admin = false;
             if($row['admin'] == 1) {
                 $admin = true;
