@@ -21,7 +21,7 @@
             <div class="container">
                 <h2 class="red-text section-header center">View Member Activity</h2>
                 <div id="table">
-                    <table class="centered white-text">
+                    <table class="centered responsive-table white-text">
                         <thead class="red">
                             <tr>
                                 <th data-field="ID">ID</th>
