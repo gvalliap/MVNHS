@@ -11,8 +11,20 @@
     $msg = "";
     if(isset($_POST['submit'])) {
         if($_POST['name'] != null && $_POST['description'] != null && $_POST['location'] != null && $_POST['start-time'] != null && !(empty($_POST['start-aorp'])) && $_POST['end-time'] != null && !(empty($_POST['end-aorp'])) && $_POST['hours'] != null && $_POST['day'] != null && $_POST['month'] != null && $_POST['year'] != null) {
+            $event_name = addslashes($_POST['name']);
+            $description = stripslashes(str_replace("\n", "</br>", $_POST['description']));
+            $location = addslashes($_POST['location']);
+            $hours = stripslashes($_POST['hours']);
+            $spots = stripslashes($_POST['spots']) - 1;
+            $start_time = stripslashes($_POST['start-time']);
+            $end_time = stripslashes($_POST['end-time']);
+            $day = stripslashes($_POST['day']);
+            $month = stripslashes($_POST['month']);
+            $year = stripslashes($_POST['year']);
+
             $row = $connect->query("SELECT * FROM `activites` ORDER BY `AID` DESC LIMIT 1");
-            $aid = $row['AID'] + 1;
+            $id = $row['ID'] + 1;
+
             $saorp = "PM";
             if($_POST['start-aorp'] == "sam") {
                 $saorp = "AM";
@@ -21,17 +33,12 @@
             if($_POST['end-aorp'] == "eam") {
                 $eaorp = "AM";
             }
-            $zero = 0;
 
-            $insert = "INSERT INTO `activites` (`AID`, `name`, `officer`, `description`, `location`, `hours`, `spots`, `closed`, `day`, `month`, `year`, `start_time`, `start_ap`, `end_time`, `end_ap`, `done`) VALUES ";
+            $connect->query("INSERT INTO `activities` (`ID`, `name`, `officer`, `description`, `location`, `hours`, `spots`, `closed`, `day`, `month`, `year`, `start_time`, `start_ap`, `end_time`, `end_ap`, `done`) VALUES($id, '$event_name', '$name', '$description', '$location', $hours, $spots, 0, $day, $month, $year, '$start_time', '$saorp', '$end_time', '$eaorp', 0)");
 
-            $sql = "(".$aid.",".$_POST['name'].",".$name.",".$_POST['description'].",".$_POST['location'].",". $_POST['hours'].",".$_POST['spots'].",".$zero.",".$_POST['day'].",".$_POST['month'].",".$_POST['year'].",".$_POST['start-time'].",".$saorp.",".$_POST['end-time'].",".$eaorp.",".$zero.")";
-
-            $connect->query($insert . $sql);
-
-            $msg = "Event created successfullly!";
+            $msg = $event_name.$name;
         } else {
-            $msg = "Please fill out the form!";
+            $msg = "Please fill out the form completely!";
         }
     }
 ?>

@@ -69,7 +69,7 @@
                                         }
                                         $total += $row[$i];
                                     }
-                                    echo "<td class='amber darken-3'>",$total,"</td>";
+                                    echo "<td class='amber darken-3'><b>",$total,"</b></td>";
                                     echo "</tr>";
                                 }
                             ?>
