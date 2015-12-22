@@ -22,7 +22,8 @@
             $month = stripslashes($_POST['month']);
             $year = stripslashes($_POST['year']);
 
-            $row = $connect->query("SELECT * FROM `activites` ORDER BY `AID` DESC LIMIT 1");
+            $query = $connect->query("SELECT * FROM `activities` ORDER BY `ID` DESC LIMIT 1");
+            $row = mysqli_fetch_array($query, MYSQLI_BOTH);
             $id = $row['ID'] + 1;
 
             $saorp = "PM";
@@ -36,7 +37,7 @@
 
             $connect->query("INSERT INTO `activities` (`ID`, `name`, `officer`, `description`, `location`, `hours`, `spots`, `closed`, `day`, `month`, `year`, `start_time`, `start_ap`, `end_time`, `end_ap`, `done`) VALUES($id, '$event_name', '$name', '$description', '$location', $hours, $spots, 0, $day, $month, $year, '$start_time', '$saorp', '$end_time', '$eaorp', 0)");
 
-            $msg = $event_name.$name;
+            $msg = "Event entered successfully!";
         } else {
             $msg = "Please fill out the form completely!";
         }
@@ -99,7 +100,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6 l4">
-                            <input id="hours" name="hours" type="text" length="2">
+                            <input id="hours" name="hours" type="text" length="3">
                             <label for="hours">Hours</label>
                         </div>
                         <div class="input-field col s6 l4">
