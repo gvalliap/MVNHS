@@ -23,13 +23,13 @@
                     $year = date('Y');
                     $query = $connect->query("SELECT * FROM `activities` WHERE `closed` = 0");
                     while($row = mysqli_fetch_array($query)) {
-                        $id = $row['ID'];
+                        $activity_id = $row['ID'];
                         if($row['year'] < $year)
-                            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $id");
+                            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
                         else if($row['month'] < $month && $row['year'] == $year)
-                            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $id");
+                            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
                         else if($row['day'] < $day && $row['month'] == $month && $row['year'] == $year)
-                            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $id");
+                            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
                     }
                     $query = $connect->query("SELECT * FROM `activities` WHERE `closed` = 0 ORDER BY `ID`");
                     if($query->num_rows < 1) {
@@ -38,7 +38,7 @@
                         <p>Click on an event name to sign-up for it or to see a brief description of it.</p>
                         <table class="centered responsive-table">
                             <thead class="red white-text">
-                                <th data-field="id">Event Name</th>
+                                <th data-field="name">Event Name</th>
                                 <th data-field="date">Date</th>
                                 <th data-field="time">Time</th>
                                 <th data-field="hours">Hours</th>
@@ -46,15 +46,15 @@
                             </thead>
                             <tbody class="light-blue darken-3 white-text">
                                 <?php
-                                        while($row = mysqli_fetch_array($query)) {
-                                            echo "<tr>";
-                                            echo "<td><a class=\"orange-text\" href=\"activity.php?id=",$id,"\">",$row['name'],"</a></td>";
-                                            echo "<td>",$row['month'],"/",$row['day'],"/",$row['year'],"</td>";
-                                            echo "<td>",$row['start_time'],$row['start_ap']," - ",$row['end_time'],$row['end_ap'],"</td>";
-                                            echo "<td>",$row['hours'],"</td>";
-                                            echo "<td>",$row['spots'],"</td>";
-                                            echo "</tr>";
-                                        }
+                                    while($row = mysqli_fetch_array($query)) {
+                                        echo "<tr>";
+                                        echo "<td><a class=\"orange-text\" href=\"activity.php?id=",$row['ID'],"\">",$row['name'],"</a></td>";
+                                        echo "<td>",$row['month'],"/",$row['day'],"/",$row['year'],"</td>";
+                                        echo "<td>",$row['start_time'],$row['start_ap']," - ",$row['end_time'],$row['end_ap'],"</td>";
+                                        echo "<td>",$row['hours'],"</td>";
+                                        echo "<td>",$row['spots'],"</td>";
+                                        echo "</tr>";
+                                    }
                                 ?>
                             </tbody>
                         </table>

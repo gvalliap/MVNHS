@@ -14,18 +14,30 @@
         $activity = mysqli_fetch_array($activity_query);
         $spots = $activity['spots'] - 1;
         $connect->query("UPDATE `activities` SET `spots` = $spots WHERE `ID` = $activity_id");
+        header("Location: activity.php?id=$activity_id");
+        die;
     }
 
     if(isset($_POST['cancel'])) {
         $connect->query("DELETE FROM `actuser` WHERE `SID` = $id AND `AID` = $activity_id");
-        $user_query = $connect->query("SELECT * FROM `users` WHERE `ID` = $id LIMIT 1");
-        $user = mysqli_fetch_array($user_query);
-        $hours = $user['hours'] - 1;
-        $connect->query("UPDATE `users` SET `hours` = $hours WHERE `ID` = $id");
         $activity_query = $connect->query("SELECT * FROM `activities` WHERE `ID` = $activity_id LIMIT 1");
         $activity = mysqli_fetch_array($activity_query);
         $spots = $activity['spots'] + 1;
         $connect->query("UPDATE `activities` SET `spots` = $spots WHERE `ID` = $activity_id");
+
+        date_default_timezone_set('America/Los_Angeles');
+        $today = date("Y-m-d");
+        $activity_date = date($activity['year']."-".$activity['month']."-".$activity['day']);
+        $today_time = strtotime($today);
+        $activity_time = strtotime($activity_date);
+        if($today_time + 604800 > $activity_time) {
+            $user_query = $connect->query("SELECT * FROM `users` WHERE `ID` = $id LIMIT 1");
+            $user = mysqli_fetch_array($user_query);
+            $hours = $user['hours'] - 1;
+            $connect->query("UPDATE `users` SET `hours` = $hours WHERE `ID` = $id");
+        }
+        header("Location: activity.php?id=$activity_id");
+        die;
     }
 ?>
 

@@ -8,17 +8,20 @@
 ?>
 
 <?php
+    $activity_id = $_GET['id'];
+    $query = $connect->query("SELECT * FROM `activities` WHERE `ID` = $activity_id LIMIT 1");
+    $row = mysqli_fetch_array($query);
     $msg = "";
-    $event_name = "";
-    $description = "";
-    $location = "";
-    $hours = "";
-    $spots = "";
-    $start_time = "";
-    $end_time = "";
-    $day = "";
-    $month = "";
-    $year = 2016;
+    $event_name = $row['name'];
+    $description = $row['description'];
+    $location = $row['location'];
+    $hours = $row['hours'];
+    $spots = $row['spots'];
+    $start_time = $row['start_time'];
+    $end_time = $row['end_time'];
+    $day = $row['day'];
+    $month = $row['month'];
+    $year = $row['year'];
 
     if(isset($_POST['submit'])) {
         $event_name = addslashes($_POST['name']);
@@ -32,11 +35,6 @@
         $month = stripslashes($_POST['month']);
         $year = stripslashes($_POST['year']);
         if($_POST['name'] != null && $_POST['description'] != null && $_POST['location'] != null && $_POST['start-time'] != null && !(empty($_POST['start-aorp'])) && $_POST['end-time'] != null && !(empty($_POST['end-aorp'])) && $_POST['hours'] != null && $_POST['day'] != null && $_POST['month'] != null && $_POST['year'] != null) {
-            $spots -= 1;
-            $query = $connect->query("SELECT * FROM `activities` ORDER BY `ID` DESC LIMIT 1");
-            $row = mysqli_fetch_array($query, MYSQLI_BOTH);
-            $activity_id = $row['ID'] + 1;
-
             $saorp = "PM";
             if($_POST['start-aorp'] == "sam") {
                 $saorp = "AM";
@@ -45,12 +43,11 @@
             if($_POST['end-aorp'] == "eam") {
                 $eaorp = "AM";
             }
-
-            $connect->query("INSERT INTO `activities` (`ID`, `name`, `officer`, `description`, `location`, `hours`, `spots`, `closed`, `day`, `month`, `year`, `start_time`, `start_ap`, `end_time`, `end_ap`, `done`) VALUES($activity_id, '$event_name', '$name', '$description', '$location', $hours, $spots, 0, $day, $month, $year, '$start_time', '$saorp', '$end_time', '$eaorp', 0)");
-
-            $connect->query("INSERT INTO `actuser` (`SID`, `AID`) VALUES($id, $activity_id)");
-
-            $msg = "Event entered successfully!";
+            $sql = "UPDATE `activities` SET `ID` = $activity_id AND `name` = '$event_name' AND `officer` = '$name' AND `description` = '$description' AND `location` = '$location' AND `hours` = $hours AND `spots` = $spots AND `day` = $day AND `month` = $month AND `year` = $year AND `start_time` = '$start_time' AND `start_ap` = '$eaorp' AND `end_time` = '$end_time' AND `end_ap` = '$eaorp' WHERE `ID` = $activity_id";
+            $query = $connect->query($sql);
+            $now = mysqli_fetch_array($query);
+            $msg = "Event updated successfully!";
+            $msg = $sql;
         } else {
             $msg = "Please fill out the form completely!";
         }
@@ -69,8 +66,8 @@
 
         <main>
             <div class="container">
-                <h2 class="red-text section-header center">Add an Event</h2>
-                <p>Please fill out this form to add a new event to the list!</p>
+                <h2 class="red-text section-header center">Edit an Event</h2>
+                <p>Please edit this form and submit it to update the event's details!</p>
                 <p class="red-text"><?= $msg; ?></p>
                 <form method="post">
                     <div class="row">
@@ -118,7 +115,7 @@
                         </div>
                         <div class="input-field col s6 l4">
                             <input id="spots" value="<?=$spots; ?>" name="spots" type="text" length="2">
-                            <label for="spots">Spots</label>
+                            <label for="spots">Spots (the open spots left, not the total spots)</label>
                         </div>
                     </div>
                     <div class="row">

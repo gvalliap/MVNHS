@@ -9,7 +9,7 @@
     <ul id="admin-dropdown" class="dropdown-content">
         <li class="red"><a class="white-text" href="addactivity.php">Add New Event</a></li>
         <li class="divider"></li>
-        <li class="red"><a class="white-text" href="viewactivity.php">View/Edit Event List</a></li>
+        <li class="red"><a class="white-text" href="viewactivities.php">View/Edit Event List</a></li>
         <li class="divider"></li>
         <li class="red"><a class="white-text" href="viewmemberactivity.php">View Member Activity</a></li>
         <li class="divider"></li>
