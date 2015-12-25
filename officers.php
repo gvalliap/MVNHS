@@ -20,7 +20,7 @@
                     <div class="col s12 m6 l4">
                         <div class="card large">
                             <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/matthew.jpg">
+                                <img class="activator responsive-img" src="images/matthew.jpg">
                             </div>
                             <div class="card-content red white-text">
                                 <span class="card-title activator white-text">Ganesh Valliappan<i class="material-icons right">more_vert</i></span>
@@ -35,7 +35,7 @@
                     <div class="col s12 m6 l4">
                         <div class="card large">
                             <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/karissa.jpg">
+                                <img class="activator responsive-img" src="images/karissa.jpg">
                             </div>
                             <div class="card-content red white-text">
                                 <span class="card-title activator white-text">Ganesh Valliappan<i class="material-icons right">more_vert</i></span>
@@ -50,7 +50,7 @@
                     <div class="col s12 m6 l4">
                         <div class="card large">
                             <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="http://www.clipartbest.com/cliparts/xig/oyq/xigoyqr6T.png">
+                                <img class="activator responsive-img" src="http://www.clipartbest.com/cliparts/xig/oyq/xigoyqr6T.png">
                             </div>
                             <div class="card-content red white-text">
                                 <span class="card-title activator white-text">Ganesh Valliappan<i class="material-icons right">more_vert</i></span>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="col s12 m6 l4">
-                        <div class="card">
+                        <div class="card large">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="http://www.clipartbest.com/cliparts/xig/oyq/xigoyqr6T.png">
                             </div>

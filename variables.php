@@ -6,13 +6,16 @@
             $row = mysqli_fetch_array($query, MYSQLI_BOTH);
             $fname = $row['fname'];
             $lname = $row['lname'];
-            $name = $fname . $lname;
+            $name = $fname . " " . $lname;
             $admin = false;
+            $id = $row['ID'];
             if($row['admin'] == 1) {
                 $admin = true;
             }
             $query = $connect->query("SELECT * FROM `users_record` WHERE `fname`='$fname' AND `lname`='$lname' LIMIT 1");
             $record = mysqli_fetch_array($query, MYSQLI_BOTH);
         }
+    } else {
+        $id = -1;
     }
 ?>
