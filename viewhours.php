@@ -27,7 +27,7 @@
                     $current = $row['hours'];
                     $total = $so1 + $so2 + $ju1 + $ju2 + $se1 + $se2;
                 ?>
-                <table class="centered highlight white-text">
+                <table class="centered white-text">
                     <thead class="red">
                         <th data-field="semester">Semester</th>
                         <th data-field="hours">Number of Hours</th>
@@ -43,7 +43,7 @@
                         <tr id="table-hover" class="light-blue darken-4"><td>Total High School Career</td><td><?=$total; ?></td></tr>
                     </tbody>
                 </table>
-                <p class="center">***After each semester ends, the total hours for that semester will be updated.***</p>
+                <p class="center">***After each semester ends, the total hours for that semester will be updated***</p>
             </div>
         </main>
 

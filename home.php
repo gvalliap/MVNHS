@@ -1,10 +1,32 @@
-<?php include("initialize.php");?>
 <?php
+    include("initialize.php");
     if(!$_SESSION['user']){
         header("Location: index.php");
         die;
     }
     include("variables.php");
+?>
+
+<?php
+    date_default_timezone_set('America/Los_Angeles');
+    $day = date('j');
+    $month = date('n');
+    $year = date('Y');
+    $query = $connect->query("SELECT * FROM `activities` WHERE `closed` = 0");
+    while($row = mysqli_fetch_array($query)) {
+        $activity_id = $row['ID'];
+        if($row['year'] < $year)
+            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
+        else if($row['month'] < $month && $row['year'] == $year)
+            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
+        else if($row['day'] < $day && $row['month'] == $month && $row['year'] == $year)
+            $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
+    }
+
+    $query = $connect->query("SELECT * FROM `activities` WHERE `closed` = 1 AND `done` = 0");
+    while($row = mysqli_fetch_array($query)) {
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +52,11 @@
             </div>
             <div class="container">
                 <?php
+                    $hours = 0;
                     $user_activities = $connect->query("SELECT * FROM `actuser` WHERE `SID` = $id");
                     if($user_activities->num_rows == 0) {
-                        echo "<h2 class=\"red-text center section-header\">Please Sign up for Events!</h2>>";
-                        echo "<p>Events that you have signed up for will be displayed in the home page</p>";
+                        echo "<h2 class=\"red-text center section-header\">Please Sign up for Events!</h2>";
+                        echo "<p class=\"center\">Events that you have signed-up for will be displayed on the home page</p>";
                     } else {
                         echo "<h2 class=\"red-text center section-header\">Events you have signed-up for:</h2>";
                 ?>
@@ -47,7 +70,6 @@
                             </thead>
                             <tbody class="light-blue darken-3 white-text">
                                 <?php
-                                    $hours = 0;
                                     while($activity = mysqli_fetch_array($user_activities)) {
                                         $activity_id = $activity['AID'];
                                         $activity_query = $connect->query("SELECT * FROM `activities` WHERE `ID` = $activity_id LIMIT 1");
@@ -65,16 +87,16 @@
                                 </tbody>
                             </table>
                 <?php
-                        echo "<h4 class=\"center\">You have <b class=\"";
-                        if($hours < 5) {
-                            echo "red-text";
-                        } else {
-                            echo "green-text";
-                        }
-                        echo "\">",$hours,"</b> hours this semester!</h4>";
-                        echo "<p class=\"center\">You need at least 5 hours each semester to be an active member</p>";
                     }
+                    echo "<h4 class=\"center\">You have <b class=\"";
+                    if($hours < 5) {
+                        echo "red-text";
+                    } else {
+                        echo "green-text";
+                    }
+                    echo "\">",$hours,"</b> hours this semester!</h4>";
                 ?>
+                <p class="center">You need at least 5 hours each semester to be an active member</p>
             </div>
         </main>
 

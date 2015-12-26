@@ -73,28 +73,34 @@
                 <p><b>Spots Left:</b> <?=$row['spots']; ?></p>
                 <?php
                     if(isset($_SESSION['user']) && $_SESSION['user']) {
-                        if($query->num_rows < 1) {
+                        $date_query = $connect->query("SELECT * FROM `activities` WHERE `ID` = $activity_id");
+                        $date = mysqli_fetch_array($date_query);
+                        if($date['closed'] == 0) {
+                            if($query->num_rows < 1) {
                 ?>
-                            <form method="post" class="center">
-                                <div style="text-align: center;">
-                                    <button id="signup-btn" name="signup" class="btn-large waves-effect waves-light center-align" type="submit" style="margin: auto;">
-                                        Sign Up!
-                                        <i class="material-icons left">done</i>
-                                    </button>
-                                </div>
-                            </form>
+                                <form method="post" class="center">
+                                    <div style="text-align: center;">
+                                        <button id="signup-btn" name="signup" class="btn-large waves-effect waves-light center-align" type="submit" style="margin: auto;">
+                                            Sign Up!
+                                            <i class="material-icons left">done</i>
+                                        </button>
+                                    </div>
+                                </form>
                 <?php
+                            } else {
+                ?>
+                                <form method="post" class="center">
+                                    <div style="text-align: center;">
+                                        <button id="cancel-btn" name="cancel" class="btn-large waves-effect waves-light center-align" type="submit" style="margin: auto;">
+                                            Cancel
+                                            <i class="material-icons left">not_interested</i>
+                                        </button>
+                                    </div>
+                                </form>
+                <?php
+                            }
                         } else {
-                ?>
-                            <form method="post" class="center">
-                                <div style="text-align: center;">
-                                    <button id="cancel-btn" name="cancel" class="btn-large waves-effect waves-light center-align" type="submit" style="margin: auto;">
-                                        Cancel
-                                        <i class="material-icons left">not_interested</i>
-                                    </button>
-                                </div>
-                            </form>
-                <?php
+                            echo "<h4 class=\"center\">Event has ended!</h4>";
                         }
                     }
                 ?>
