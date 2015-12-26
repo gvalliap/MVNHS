@@ -35,7 +35,7 @@
                         echo "<h2 class=\"red-text center section-header\">Please Sign up for Events!</h2>>";
                         echo "<p>Events that you have signed up for will be displayed in the home page</p>";
                     } else {
-                        echo "<h2 class=\"red-text center section-header\">Events you have volunteered at:</h2>";
+                        echo "<h2 class=\"red-text center section-header\">Events you have signed-up for:</h2>";
                 ?>
                         <table class="centered responsive-table">
                             <thead class="red white-text">

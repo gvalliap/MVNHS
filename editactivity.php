@@ -43,11 +43,8 @@
             if($_POST['end-aorp'] == "eam") {
                 $eaorp = "AM";
             }
-            $sql = "UPDATE `activities` SET `ID` = $activity_id AND `name` = '$event_name' AND `officer` = '$name' AND `description` = '$description' AND `location` = '$location' AND `hours` = $hours AND `spots` = $spots AND `day` = $day AND `month` = $month AND `year` = $year AND `start_time` = '$start_time' AND `start_ap` = '$eaorp' AND `end_time` = '$end_time' AND `end_ap` = '$eaorp' WHERE `ID` = $activity_id";
-            $query = $connect->query($sql);
-            $now = mysqli_fetch_array($query);
+            $query = $connect->query("UPDATE `activities` SET `name` = '$event_name', `officer` = '$name', `description` = '$description', `location` = '$location', `hours` = $hours, `spots` = $spots, `day` = $day, `month` = $month, `year` = $year, `start_time` = '$start_time', `start_ap` = '$eaorp', `end_time` = '$end_time', `end_ap` = '$eaorp' WHERE `ID` = $activity_id");
             $msg = "Event updated successfully!";
-            $msg = $sql;
         } else {
             $msg = "Please fill out the form completely!";
         }
