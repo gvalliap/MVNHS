@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$connect = mysqli_connect("localhost","root","", "mvnhs") or die(mysql_error());
+	$connect = mysqli_connect("localhost","monta30","onionbath345", "monta30_nhs") or die(mysql_error());
 	if(isset($_COOKIE['user'])){
 		$user = $_COOKIE['user'];
 		$query = mysql_query("SELECT * FROM `users` WHERE `email` = '$user' LIMIT 1");

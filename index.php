@@ -1,5 +1,5 @@
-<?php include("initialize.php"); ?>
 <?php
+    include("initialize.php");
     if(isset($_SESSION['user'])) {
         if($_SESSION['user']){
             header("Location: home.php");
@@ -18,10 +18,10 @@
         </header>
 
         <main>
-            <div class="parallax-container">
-                <div class="parallax"><img src="http://devrieslegal.com/wp-content/uploads/2014/04/bigstock-volunteer-group-raising-hands-195439581.jpg" class="responsive-img"></div>
+            <div class="parallax-container" style="height: 72vh;">
+                <div class="parallax"><img src="images/filler1.jpg" class="responsive-img"></div>
             </div>
-            <div class="light-blue darken-3 hide-on-large-only white-text center">
+            <div class="light-blue darken-3 hide-on-large-only white-text center" style="height: 72vh;">
                 <h2 class="section-header">Monta Vista National Honor Society</h2>
             </div>
             <div class="light-blue darken-3 hide-on-med-and-down">
@@ -32,47 +32,27 @@
             <div class="container">
                 <div class="section">
                     <h3 class="center red-text section-header">News</h3>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div class="card red">
-                                <div class="card-content white-text">
-                                    <span class="card-title">One</span>
-                                    <p>Breakfast procuring nay end happiness allowance assurance frankness. Met simplicity nor difficulty unreserved who. Entreaties mr conviction dissimilar me astonished estimating cultivated. On no applauded exquisite my additions. Pronounce add boy estimable nay suspected. You sudden nay elinor thirty esteem temper. Quiet leave shy you gay off asked large.</p>
+                        <?php
+                            $query = $connect->query("SELECT * FROM `news` LIMIT 4");
+                            while($row = mysqli_fetch_array($query)) {
+                                ?>
+                                <div class="col s12 m6">
+                                    <div class="card red">
+                                        <div class="card-content white-text">
+                                            <span class="card-title"><?php echo $row['title']," (",$row['month'],"/",$row['day'],"/",$row['year'],")"; ?></span>
+                                            <p><?=$row['news']; ?></p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card red">
-                                <div class="card-content white-text">
-                                    <span class="card-title">One</span>
-                                    <p>Breakfast procuring nay end happiness allowance assurance frankness. Met simplicity nor difficulty unreserved who. Entreaties mr conviction dissimilar me astonished estimating cultivated. On no applauded exquisite my additions. Pronounce add boy estimable nay suspected. You sudden nay elinor thirty esteem temper. Quiet leave shy you gay off asked large.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <div class="card red">
-                                <div class="card-content white-text">
-                                    <span class="card-title">One</span>
-                                    <p>Breakfast procuring nay end happiness allowance assurance frankness. Met simplicity nor difficulty unreserved who. Entreaties mr conviction dissimilar me astonished estimating cultivated. On no applauded exquisite my additions. Pronounce add boy estimable nay suspected. You sudden nay elinor thirty esteem temper. Quiet leave shy you gay off asked large.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 m6">
-                            <div class="card red">
-                                <div class="card-content white-text">
-                                    <span class="card-title">One</span>
-                                    <p>Breakfast procuring nay end happiness allowance assurance frankness. Met simplicity nor difficulty unreserved who. Entreaties mr conviction dissimilar me astonished estimating cultivated. On no applauded exquisite my additions. Pronounce add boy estimable nay suspected. You sudden nay elinor thirty esteem temper. Quiet leave shy you gay off asked large.</p>
-                                </div>
-                            </div>
-                        </div>
+                                <?
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
 
             <div class="parallax-container">
-                <div class="parallax"><img src="https://wallpaperscraft.com/image/crowd_people_dance_silhouette_57172_3840x2160.jpg" class="responsive-img"></div>
+                <div class="parallax"><img src="images/filler2.jpg" class="responsive-img"></div>
             </div>
 
             <div class="container">

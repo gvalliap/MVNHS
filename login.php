@@ -5,26 +5,16 @@
         die;
     }
     include("variables.php");
-?>
 
-<?php
     $msg = "";
     if(isset($_POST['login'])) {
         if($_POST['user'] != null && $_POST['pass'] != null) {
             $user = stripslashes($_POST['user']);
             $pass = sha1(stripslashes($_POST['pass']));
             $query = $connect->query("SELECT * FROM `users` WHERE `email`='$user' AND `pass` = '$pass' LIMIT 1");
-            if($query->num_rows > 0){
+            if($query->num_rows > 0) {
                 $row = mysqli_fetch_array($query, MYSQLI_BOTH);
-                $_SESSION['user'] = $user;
-                $_SESSION['id'] = $row['ID'];
-                $_SESSION['fname'] = $row['fname'];
-                $_SESSION['lname'] = $row['lname'];
-                $_SESSION['pass'] = $pass;
-                $_SESSION['admin'] = false;
-                if($row['admin'] == 1) {
-                    $_SESSION['admin'] = true;
-                }
+                $_SESSION['user'] = $row['email'];
                 header("Location: home.php");
                 die;
             } else {

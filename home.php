@@ -1,13 +1,11 @@
 <?php
     include("initialize.php");
-    if(!$_SESSION['user']){
+    if(!$_SESSION['user']) {
         header("Location: index.php");
         die;
     }
     include("variables.php");
-?>
 
-<?php
     date_default_timezone_set('America/Los_Angeles');
     $day = date('j');
     $month = date('n');
@@ -15,17 +13,36 @@
     $query = $connect->query("SELECT * FROM `activities` WHERE `closed` = 0");
     while($row = mysqli_fetch_array($query)) {
         $activity_id = $row['ID'];
-        if($row['year'] < $year)
+        if($row['year'] < $year) {
             $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
-        else if($row['month'] < $month && $row['year'] == $year)
+        } else if($row['month'] < $month && $row['year'] == $year) {
             $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
-        else if($row['day'] < $day && $row['month'] == $month && $row['year'] == $year)
+        } else if($row['day'] < $day && $row['month'] == $month && $row['year'] == $year) {
             $connect->query("UPDATE `activities` SET `closed` = 1 WHERE `ID` = $activity_id");
+        }
     }
 
+    $refresh = false;
     $query = $connect->query("SELECT * FROM `activities` WHERE `closed` = 1 AND `done` = 0");
     while($row = mysqli_fetch_array($query)) {
-        
+        if($row['year'] < $year || $row['year'] == $year && $row['month'] < $month || $row['year'] == $year && $row['month'] == $month && $row['day'] < $day) {
+            $activity_id = $row['ID'];
+            $update_query = $connect->query("SELECT * FROM `actuser` WHERE `AID` = $activity_id LIMIT 1");
+            while($student = mysqli_fetch_array($update_query)) {
+                $student_id = $student['SID'];
+                $student_query = $connect->query("SELECT * FROM `users` WHERE `ID` = $student_id LIMIT 1");
+                $student_record = mysqli_fetch_array($student_query);
+                $student_hours = $student_record['hours'] + $row['hours'];
+                $connect->query("UPDATE `users` SET `hours` = $student_hours WHERE `ID` = $student_id");
+            }
+            $connect->query("UPDATE `activities` SET `done` = 1 WHERE `ID` = $activity_id");
+            $refresh = true;
+        }
+    }
+
+    if($refresh) {
+        header("Location: home.php");
+        die;
     }
 ?>
 
@@ -40,7 +57,7 @@
         </header>
         <main>
             <div class="parallax-container" style="height: 400px;">
-                <div class="parallax"><img src="http://www.sonl.ca/wp-content/uploads/2009/11/volunteer-wordle-pic2.jpg" class="responsive-img"></div>
+                <div class="parallax"><img src="images/filler3.jpg" class="responsive-img"></div>
             </div>
             <div class="light-blue darken-3 hide-on-large-only white-text center">
                 <h2 class="section-header">Hello Ganesh Valliappan!</h2>
@@ -52,7 +69,6 @@
             </div>
             <div class="container">
                 <?php
-                    $hours = 0;
                     $user_activities = $connect->query("SELECT * FROM `actuser` WHERE `SID` = $id");
                     if($user_activities->num_rows == 0) {
                         echo "<h2 class=\"red-text center section-header\">Please Sign up for Events!</h2>";
@@ -74,7 +90,6 @@
                                         $activity_id = $activity['AID'];
                                         $activity_query = $connect->query("SELECT * FROM `activities` WHERE `ID` = $activity_id LIMIT 1");
                                         $activity_record = mysqli_fetch_array($activity_query);
-                                        $hours += $activity_record['hours'];
                                         echo "<tr>";
                                         echo "<td><a class=\"orange-text\" href=\"activity.php?id=",$activity_id,"\">",$activity_record['name'],"</a></td>";
                                         echo "<td>",$activity_record['month'],"/",$activity_record['day'],"/",$activity_record['year'],"</td>";
@@ -89,12 +104,12 @@
                 <?php
                     }
                     echo "<h4 class=\"center\">You have <b class=\"";
-                    if($hours < 5) {
+                    if($semester_hours < 5) {
                         echo "red-text";
                     } else {
                         echo "green-text";
                     }
-                    echo "\">",$hours,"</b> hours this semester!</h4>";
+                    echo "\">",$semester_hours,"</b> hours this semester!</h4>";
                 ?>
                 <p class="center">You need at least 5 hours each semester to be an active member</p>
             </div>

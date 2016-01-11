@@ -10,14 +10,12 @@
             <ul class="left hide-on-med-and-down">
                 <li><a class="waves-effect waves-light" href="about.php"><i class="material-icons left">description</i>About Us</a></li>
                 <li><a class="waves-effect waves-light" href="officers.php"><i class="material-icons left">contacts</i>Officers</a></li>
-                <li><a class="waves-effect waves-light"><i class="material-icons left">perm_media</i>Photos</a></li>
                 <li><a class="waves-effect waves-light" href="activites.php"><i class="material-icons left">location_on</i>Events</a></li>
             </ul>
             <ul id="mobile-nav" class="side-nav">
-                <li><a href="activites.php"><i class="material-icons left">location_on</i>Events</a></li>
-                <li><a href="activites.php"><i class="material-icons left">description</i>About Us</a></li>
-                <li><a href="activites.php"><i class="material-icons left">contacts</i>Officers</a></li>
-                <li><a href="activites.php"><i class="material-icons left">perm_media</i>Photos</a></li>
+                <li><a href="activities.php"><i class="material-icons left">location_on</i>Events</a></li>
+                <li><a href="about.php"><i class="material-icons left">description</i>About Us</a></li>
+                <li><a href="officers.php"><i class="material-icons left">contacts</i>Officers</a></li>
                 <li><a href="login.php"><i class="material-icons left">send</i>Login</a></li>
                 <li><a class="modal-trigger" href="#register"><i class="material-icons left">group</i>Register</a></li>
             </ul>

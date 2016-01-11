@@ -5,13 +5,10 @@
         die;
     }
     include("variables.php");
-?>
 
-<?php
     $msg = "";
     if(isset($_POST['change-btn'])) {
-        if($_POST['user'] != null && $_POST['current-password'] != null && $_POST['password1'] != null && $_POST['password2'] != null) {
-            $user = stripslashes($_POST['user']);
+        if($_POST['current-password'] != null && $_POST['password1'] != null && $_POST['password2'] != null) {
             $pass = sha1(stripslashes($_POST['current-password']));
             $query = $connect->query("SELECT * FROM `users` WHERE `email`='$user' AND `pass` = '$pass' LIMIT 1");
             if($query->num_rows > 0) {
@@ -26,7 +23,7 @@
                 $msg = "Invalid email or password!";
             }
         } else {
-            $msg = "Please complete the form!";
+            $msg = "Please complete the form! ".$_POST['user']." ".$_POST['current-password']." ".$_POST['password1']." ".$_POST['password2'];
         }
     }
 ?>

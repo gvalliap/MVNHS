@@ -5,9 +5,7 @@
         header("Location: home.php");
         die;
     }
-?>
-
-<?php
+    
     $msg = "";
     $event_name = "";
     $description = "";

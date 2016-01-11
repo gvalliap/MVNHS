@@ -1,9 +1,9 @@
 <?php
     include("initialize.php");
     include("variables.php");
-?>
 
-<?php
+    date_default_timezone_set('America/Los_Angeles');
+
     $activity_id = $_GET['id'];
     $query = $connect->query("SELECT * FROM `activities` WHERE `ID` = $activity_id LIMIT 1");
     $row = mysqli_fetch_array($query);

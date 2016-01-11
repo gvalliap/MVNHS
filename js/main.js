@@ -1,4 +1,4 @@
-var min = ["^250Character.", "Scholarship.", "Service.", "Leadership.", "<b>M</b>onta <b>V</b>ista <b>N</b>ational <b>H</b>onor <b>S</b>ociety"];
+var min = ["^250Character.", "Scholarship.", "Service.", "Leadership.", "Monta Vista <b>NHS</b>"];
 
 $(document).ready(function(){
     $('.parallax').parallax();

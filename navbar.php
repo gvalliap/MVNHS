@@ -1,6 +1,6 @@
 <?php
     if(isset($_SESSION['user'])) {
-        if($_SESSION['admin']) {
+        if($admin) {
             include("admin-navbar.php");
         } else {
             include("login-navbar.php");
